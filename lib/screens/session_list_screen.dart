@@ -101,6 +101,7 @@ class _SessionListScreenState extends State<SessionListScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
+                        // "logo.png",
                         "assets/logo.png",
                         width: 100,
                         height: 100,
