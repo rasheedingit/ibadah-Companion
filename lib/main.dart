@@ -6,6 +6,7 @@ void main() {
   runApp(const QuranBookmarkApp());
 }
 // Bismiallah
+// Ultimate companion app
 class QuranBookmarkApp extends StatelessWidget {
   const QuranBookmarkApp({super.key});
 
