@@ -5,7 +5,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const QuranBookmarkApp());
 }
-
+// Bismiallah
 class QuranBookmarkApp extends StatelessWidget {
   const QuranBookmarkApp({super.key});
 
