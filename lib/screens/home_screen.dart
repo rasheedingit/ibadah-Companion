@@ -197,6 +197,35 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _deleteSession() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xFF1A1C1E),
+        title: const Text("Delete Session", style: TextStyle(color: Colors.redAccent)),
+        content: const Text("Are you sure you want to delete this session and all its progress? This action cannot be undone.",
+          style: TextStyle(color: Colors.white70)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text("Cancel", style: TextStyle(color: Colors.grey)),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent, foregroundColor: Colors.white),
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text("Delete"),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      await _storageService.deleteSession(widget.sessionId);
+      if (!mounted) return;
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final int versesRead = _calculateTotalVersesRead(_session?.lastRead);
@@ -213,10 +242,16 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.history),
+            tooltip: 'View History',
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HistoryScreen(sessionId: widget.sessionId)),
             ).then((_) => _loadSessionData()),
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
+            tooltip: 'Delete Session',
+            onPressed: _deleteSession,
           ),
         ],
       ),
@@ -247,24 +282,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            // "logo.png",
-                            "assets/logo.png",
-                            height: 40,
-                            width: 40,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: Image.asset(
+                        //     // "logo.png",
+                        //     "assets/logo.png",
+                        //     height: 40,
+                        //     width: 40,
+                        //     fit: BoxFit.contain,
+                        //   ),
+                        // ),
                         const SizedBox(height: 8),
                         Text(
                           "${(progressPercent * 100).toStringAsFixed(1)}%",
-                          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                          style: const TextStyle(fontSize: 27, fontWeight: FontWeight.bold, color: Color(0xFF2ECC71)),
                         ),
                         Text(
                           "$versesRead / 6,236",
-                          style: TextStyle(fontSize: 10, color: Colors.white.withValues(alpha: 0.5)),
+                          style: TextStyle(fontSize: 18, color: Colors.white.withValues(alpha: 0.5)),
                         ),
                       ],
                     ),
