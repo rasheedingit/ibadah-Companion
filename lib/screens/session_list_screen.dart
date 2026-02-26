@@ -92,6 +92,7 @@ class _SessionListScreenState extends State<SessionListScreen> {
           style: TextStyle(color: Color(0xFF2ECC71), fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        centerTitle: true,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator(color: Color(0xFF2ECC71)))
@@ -152,7 +153,11 @@ class _SessionListScreenState extends State<SessionListScreen> {
                                     valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF2ECC71)),
                                   ),
                                 ),
-                                const Icon(Icons.book, color: Color(0xFF2ECC71), size: 20),
+                                 // const Icon(Icons.book, color: Color(0xFF2ECC71), size: 20),
+                                Text(
+                                  "${(progress * 100).toStringAsFixed(1)}%",
+                                  style: const TextStyle(color: Color(0xFF2ECC71), fontWeight: FontWeight.bold, fontSize: 10),
+                                )
                               ],
                             ),
                             const SizedBox(width: 16),
@@ -170,9 +175,9 @@ class _SessionListScreenState extends State<SessionListScreen> {
                                   ),
                                   Text(
                                     session.lastRead != null
-                                        ? "Last: ${session.lastRead!.surahName} ${session.lastRead!.ayahNumber}"
+                                        ? "Last mark: ${session.lastRead!.surahName} ${session.lastRead!.ayahNumber}"
                                         : "Not started yet",
-                                    style: TextStyle(color: Colors.white.withValues(alpha: 0.4), fontSize: 13),
+                                    style: TextStyle(color: Colors.white.withValues(alpha: 0.4), fontSize: 14),
                                   ),
                                 ],
                               ),
@@ -180,11 +185,11 @@ class _SessionListScreenState extends State<SessionListScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(
-                                  "${(progress * 100).toStringAsFixed(1)}%",
-                                  style: const TextStyle(color: Color(0xFF2ECC71), fontWeight: FontWeight.bold, fontSize: 12),
-                                ),
-                                const Icon(Icons.chevron_right, color: Colors.white24, size: 16),
+                                // Text(
+                                //   "${(progress * 100).toStringAsFixed(1)}%",
+                                //   style: const TextStyle(color: Color(0xFF2ECC71), fontWeight: FontWeight.bold, fontSize: 14),
+                                // ),
+                                const Icon(Icons.chevron_right, color: Colors.white24, size: 20),
                               ],
                             ),
                           ],
