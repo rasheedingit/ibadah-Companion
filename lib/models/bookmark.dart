@@ -27,7 +27,9 @@ class Bookmark {
       surahName: map['surahName'] ?? '',
       surahNumber: map['surahNumber'] ?? 0,
       ayahNumber: map['ayahNumber'] ?? 0,
-      timestamp: DateTime.parse(map['timestamp']),
+      timestamp: map['timestamp'] != null 
+          ? DateTime.parse(map['timestamp']) 
+          : DateTime.now(),
     );
   }
 

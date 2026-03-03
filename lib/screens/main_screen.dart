@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'session_list_screen.dart';
+import 'dua_list_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -13,7 +14,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _pages = [
     const SessionListScreen(),
-    const PlaceholderWidget(title: "Duas", icon: Icons.insights),
+    const DuaListScreen(),
     const PlaceholderWidget(title: "Hadiths", icon: Icons.people),
     const PlaceholderWidget(title: "Settings", icon: Icons.settings),
   ];
