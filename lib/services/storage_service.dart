@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/reading_session.dart';
 import '../models/bookmark.dart';
@@ -8,7 +9,15 @@ class StorageService {
   Future<List<ReadingSession>> getSessions() async {
     final prefs = await SharedPreferences.getInstance();
     final List<String> sessionsJson = prefs.getStringList(_sessionsKey) ?? [];
-    return sessionsJson.map((json) => ReadingSession.fromJson(json)).toList();
+    final List<ReadingSession> sessions = [];
+    for (final json in sessionsJson) {
+      try {
+        sessions.add(ReadingSession.fromJson(json));
+      } catch (e) {
+        debugPrint('Error parsing session: $e');
+      }
+    }
+    return sessions;
   }
 
   Future<void> saveSessions(List<ReadingSession> sessions) async {

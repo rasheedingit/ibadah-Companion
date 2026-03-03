@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   shape: BoxShape.circle,
                 ),
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                   ),
                   child: Padding(

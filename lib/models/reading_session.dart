@@ -32,9 +32,11 @@ class ReadingSession {
       name: map['name'] ?? '',
       lastRead: map['lastRead'] != null ? Bookmark.fromMap(map['lastRead']) : null,
       history: map['history'] != null 
-          ? List<Bookmark>.from(map['history']?.map((x) => Bookmark.fromMap(x)))
+          ? (map['history'] as List).map((x) => Bookmark.fromMap(x)).toList()
           : [],
-      createdAt: DateTime.parse(map['createdAt']),
+      createdAt: map['createdAt'] != null 
+          ? DateTime.parse(map['createdAt']) 
+          : DateTime.now(),
     );
   }
 

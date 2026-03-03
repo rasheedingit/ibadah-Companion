@@ -182,14 +182,14 @@ class _SessionListScreenState extends State<SessionListScreen> {
                                 ],
                               ),
                             ),
-                            Column(
+                            const Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 // Text(
                                 //   "${(progress * 100).toStringAsFixed(1)}%",
                                 //   style: const TextStyle(color: Color(0xFF2ECC71), fontWeight: FontWeight.bold, fontSize: 14),
                                 // ),
-                                const Icon(Icons.chevron_right, color: Colors.white24, size: 20),
+                                Icon(Icons.chevron_right, color: Colors.white24, size: 20),
                               ],
                             ),
                           ],
